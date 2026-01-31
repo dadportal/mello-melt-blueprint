@@ -1,19 +1,23 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
-import { ShoppingCart, Search, Menu, X, User } from "lucide-react";
+import { ShoppingCart, Search, Menu, X, User, Heart } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { useCart } from "@/context/CartContext";
+import { useAuth } from "@/context/AuthContext";
+import { ThemeToggle } from "@/components/theme/ThemeToggle";
 import { cn } from "@/lib/utils";
 
 const navLinks = [
   { name: "Home", href: "/" },
   { name: "Products", href: "/products" },
   { name: "About Us", href: "/about" },
+  { name: "Blog", href: "/blog" },
   { name: "Contact", href: "/contact" },
 ];
 
 export const Header = () => {
   const { totalItems, setIsCartOpen } = useCart();
+  const { user } = useAuth();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
@@ -56,9 +60,19 @@ export const Header = () => {
             <Search className="h-5 w-5" />
           </Button>
           
-          <Button variant="ghost" size="icon" className="hidden md:flex">
-            <User className="h-5 w-5" />
-          </Button>
+          <ThemeToggle />
+          
+          <Link to="/wishlist">
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <Heart className="h-5 w-5" />
+            </Button>
+          </Link>
+          
+          <Link to={user ? "/profile" : "/auth"}>
+            <Button variant="ghost" size="icon" className="hidden md:flex">
+              <User className="h-5 w-5" />
+            </Button>
+          </Link>
 
           <Button
             variant="cart"
@@ -90,7 +104,7 @@ export const Header = () => {
       <div
         className={cn(
           "md:hidden overflow-hidden transition-all duration-300",
-          isMobileMenuOpen ? "max-h-64" : "max-h-0"
+          isMobileMenuOpen ? "max-h-96" : "max-h-0"
         )}
       >
         <nav className="container py-4 flex flex-col gap-2">
@@ -104,6 +118,13 @@ export const Header = () => {
               {link.name}
             </Link>
           ))}
+          <Link
+            to={user ? "/profile" : "/auth"}
+            className="px-4 py-3 text-sm font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            {user ? "My Account" : "Sign In"}
+          </Link>
         </nav>
       </div>
     </header>
