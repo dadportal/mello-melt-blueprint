@@ -99,14 +99,17 @@ export const Footer = () => {
         {/* Bottom Bar */}
         <div className="mt-12 pt-8 border-t border-accent-foreground/10 flex flex-col md:flex-row justify-between items-center gap-4">
           <p className="text-sm opacity-60">
-            © 2024 Crave Craft Food & Beverages Pvt. Ltd. All rights reserved.
+            © {new Date().getFullYear()} Crave Craft Food & Beverages Pvt. Ltd. All rights reserved.
           </p>
           <div className="flex gap-6">
-            <Link to="/privacy" className="text-sm opacity-60 hover:opacity-100">
+            <Link to="/privacy-policy" className="text-sm opacity-60 hover:opacity-100">
               Privacy Policy
             </Link>
             <Link to="/terms" className="text-sm opacity-60 hover:opacity-100">
               Terms of Service
+            </Link>
+            <Link to="/shipping" className="text-sm opacity-60 hover:opacity-100">
+              Shipping Policy
             </Link>
           </div>
         </div>
