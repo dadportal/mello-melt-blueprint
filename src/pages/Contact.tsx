@@ -110,6 +110,11 @@ export default function Contact() {
 
       if (error) throw error;
 
+      // Also trigger edge function for email notification (fire-and-forget)
+      supabase.functions.invoke("send-contact-email", {
+        body: formData,
+      }).catch(() => {});
+
       toast({
         title: "Message sent!",
         description: "We'll get back to you within 24-48 hours.",
