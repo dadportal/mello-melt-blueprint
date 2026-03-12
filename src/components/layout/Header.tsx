@@ -37,11 +37,11 @@ export const Header = () => {
       <div className="container flex h-16 items-center justify-between md:h-20">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-2 group">
-          <div className="relative">
-            <div className="h-10 w-10 rounded-full bg-gradient-golden flex items-center justify-center shadow-golden group-hover:scale-110 transition-transform duration-300">
-              <span className="text-xl">🍬</span>
-            </div>
-          </div>
+          <img
+            src="/logo.png"
+            alt="Mello Melt"
+            className="h-10 w-10 rounded-full object-cover shadow-golden group-hover:scale-110 transition-transform duration-300"
+          />
           <div className="flex flex-col">
             <span className="font-display text-xl font-bold text-foreground tracking-tight">
               Mello Melt

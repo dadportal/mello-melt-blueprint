@@ -19,7 +19,7 @@ const Index = () => {
           "@type": "Organization",
           name: "Mello Melt",
           url: window.location.origin,
-          logo: `${window.location.origin}/favicon.ico`,
+          logo: `${window.location.origin}/logo.png`,
           description: "Premium handcrafted confections by Crave Craft Food & Beverages Pvt. Ltd.",
           contactPoint: { "@type": "ContactPoint", telephone: "+91-88841-62999", contactType: "customer service" },
         }}

@@ -9,9 +9,11 @@ export const Footer = () => {
           {/* Brand */}
           <div className="space-y-4">
             <div className="flex items-center gap-2">
-              <div className="h-10 w-10 rounded-full bg-gradient-golden flex items-center justify-center">
-                <span className="text-xl">🍬</span>
-              </div>
+              <img
+                src="/logo.png"
+                alt="Mello Melt"
+                className="h-10 w-10 rounded-full object-cover"
+              />
               <div className="flex flex-col">
                 <span className="font-display text-xl font-bold">Mello Melt</span>
                 <span className="text-[10px] opacity-70 -mt-1 tracking-widest uppercase">
@@ -101,7 +103,7 @@ export const Footer = () => {
           <p className="text-sm opacity-60">
             © {new Date().getFullYear()} Crave Craft Food & Beverages Pvt. Ltd. All rights reserved.
           </p>
-          <div className="flex gap-6">
+          <div className="flex flex-wrap gap-6 items-center">
             <Link to="/privacy-policy" className="text-sm opacity-60 hover:opacity-100">
               Privacy Policy
             </Link>
@@ -112,6 +114,21 @@ export const Footer = () => {
               Shipping Policy
             </Link>
           </div>
+        </div>
+
+        {/* Developer Credit */}
+        <div className="mt-6 text-center">
+          <p className="text-xs opacity-50">
+            Designed & Developed by{" "}
+            <a
+              href="https://www.guideitsol.com"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-semibold opacity-80 hover:opacity-100 hover:text-primary transition-colors"
+            >
+              GUIDESOFT
+            </a>
+          </p>
         </div>
       </div>
     </footer>

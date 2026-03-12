@@ -7,27 +7,29 @@ import { CartProvider } from "@/context/CartContext";
 import { AuthProvider } from "@/context/AuthContext";
 import { ThemeProvider } from "@/components/theme/ThemeProvider";
 import { CartDrawer } from "@/components/cart/CartDrawer";
+import { Suspense, lazy } from "react";
+import { PageLoader } from "@/components/ui/PageLoader";
 
-// Pages
-import Index from "./pages/Index";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetail";
-import Auth from "./pages/Auth";
-import Profile from "./pages/Profile";
-import Checkout from "./pages/Checkout";
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Booking from "./pages/Booking";
-import Blog from "./pages/Blog";
-import FAQ from "./pages/FAQ";
-import Wholesale from "./pages/Wholesale";
-import PrivacyPolicy from "./pages/PrivacyPolicy";
-import TermsConditions from "./pages/TermsConditions";
-import ShippingPolicy from "./pages/ShippingPolicy";
-import NotFound from "./pages/NotFound";
-import Wishlist from "./pages/Wishlist";
-import Orders from "./pages/Orders";
-import SearchResults from "./pages/SearchResults";
+// Lazy loaded pages
+const Index = lazy(() => import("./pages/Index"));
+const Products = lazy(() => import("./pages/Products"));
+const ProductDetail = lazy(() => import("./pages/ProductDetail"));
+const Auth = lazy(() => import("./pages/Auth"));
+const Profile = lazy(() => import("./pages/Profile"));
+const Checkout = lazy(() => import("./pages/Checkout"));
+const About = lazy(() => import("./pages/About"));
+const Contact = lazy(() => import("./pages/Contact"));
+const Booking = lazy(() => import("./pages/Booking"));
+const Blog = lazy(() => import("./pages/Blog"));
+const FAQ = lazy(() => import("./pages/FAQ"));
+const Wholesale = lazy(() => import("./pages/Wholesale"));
+const PrivacyPolicy = lazy(() => import("./pages/PrivacyPolicy"));
+const TermsConditions = lazy(() => import("./pages/TermsConditions"));
+const ShippingPolicy = lazy(() => import("./pages/ShippingPolicy"));
+const NotFound = lazy(() => import("./pages/NotFound"));
+const Wishlist = lazy(() => import("./pages/Wishlist"));
+const Orders = lazy(() => import("./pages/Orders"));
+const SearchResults = lazy(() => import("./pages/SearchResults"));
 
 const queryClient = new QueryClient();
 
@@ -41,28 +43,29 @@ const App = () => (
             <Sonner />
             <BrowserRouter>
               <CartDrawer />
-              <Routes>
-                <Route path="/" element={<Index />} />
-                <Route path="/products" element={<Products />} />
-                <Route path="/product/:id" element={<ProductDetail />} />
-                <Route path="/auth" element={<Auth />} />
-                <Route path="/profile" element={<Profile />} />
-                <Route path="/checkout" element={<Checkout />} />
-                <Route path="/about" element={<About />} />
-                <Route path="/contact" element={<Contact />} />
-                <Route path="/booking" element={<Booking />} />
-                <Route path="/blog" element={<Blog />} />
-                <Route path="/faq" element={<FAQ />} />
-                <Route path="/wholesale" element={<Wholesale />} />
-                <Route path="/privacy-policy" element={<PrivacyPolicy />} />
-                <Route path="/terms" element={<TermsConditions />} />
-                <Route path="/shipping" element={<ShippingPolicy />} />
-                <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/orders" element={<Orders />} />
-                <Route path="/search" element={<SearchResults />} />
-                {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
-                <Route path="*" element={<NotFound />} />
-              </Routes>
+              <Suspense fallback={<PageLoader />}>
+                <Routes>
+                  <Route path="/" element={<Index />} />
+                  <Route path="/products" element={<Products />} />
+                  <Route path="/product/:id" element={<ProductDetail />} />
+                  <Route path="/auth" element={<Auth />} />
+                  <Route path="/profile" element={<Profile />} />
+                  <Route path="/checkout" element={<Checkout />} />
+                  <Route path="/about" element={<About />} />
+                  <Route path="/contact" element={<Contact />} />
+                  <Route path="/booking" element={<Booking />} />
+                  <Route path="/blog" element={<Blog />} />
+                  <Route path="/faq" element={<FAQ />} />
+                  <Route path="/wholesale" element={<Wholesale />} />
+                  <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                  <Route path="/terms" element={<TermsConditions />} />
+                  <Route path="/shipping" element={<ShippingPolicy />} />
+                  <Route path="/wishlist" element={<Wishlist />} />
+                  <Route path="/orders" element={<Orders />} />
+                  <Route path="/search" element={<SearchResults />} />
+                  <Route path="*" element={<NotFound />} />
+                </Routes>
+              </Suspense>
             </BrowserRouter>
           </CartProvider>
         </AuthProvider>
